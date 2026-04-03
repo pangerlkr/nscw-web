@@ -76,22 +76,20 @@ const server = http.createServer((req, res) => {
   }
 
   // Serve physical files (CSS, JS, images, etc.)
-  // Guard against path traversal: ensure the resolved path stays within cwd
+  // Use realpathSync to resolve symlinks and guard against path traversal.
   const root = path.resolve(process.cwd());
-  const filePath = path.resolve(root, '.' + cleanPath);
-  if (filePath.startsWith(root + path.sep) || filePath === root) {
-    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-      const ext = path.extname(filePath).toLowerCase();
+  try {
+    const realFilePath = fs.realpathSync(path.resolve(root, '.' + cleanPath));
+    if (realFilePath.startsWith(root + path.sep) && fs.statSync(realFilePath).isFile()) {
+      const ext = path.extname(realFilePath).toLowerCase();
       const contentType = mimeTypes[ext] || 'application/octet-stream';
-      try {
-        const content = fs.readFileSync(filePath);
-        res.writeHead(200, { 'Content-Type': contentType });
-        res.end(content);
-        return;
-      } catch {
-        // fall through to 404
-      }
+      const content = fs.readFileSync(realFilePath);
+      res.writeHead(200, { 'Content-Type': contentType });
+      res.end(content);
+      return;
     }
+  } catch {
+    // path doesn't exist or is outside root — fall through to 404
   }
 
   // Fallback: serve 404.html
