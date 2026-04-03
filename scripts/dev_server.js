@@ -80,7 +80,8 @@ const server = http.createServer((req, res) => {
   const root = path.resolve(process.cwd());
   try {
     const realFilePath = fs.realpathSync(path.resolve(root, '.' + cleanPath));
-    if (realFilePath.startsWith(root + path.sep) && fs.statSync(realFilePath).isFile()) {
+    const relative = path.relative(root, realFilePath);
+    if (relative && !relative.startsWith('..') && !path.isAbsolute(relative) && fs.statSync(realFilePath).isFile()) {
       const ext = path.extname(realFilePath).toLowerCase();
       const contentType = mimeTypes[ext] || 'application/octet-stream';
       const content = fs.readFileSync(realFilePath);
