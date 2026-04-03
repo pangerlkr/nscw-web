@@ -1,13 +1,21 @@
-import os
-import re
+#!/usr/bin/env node
+'use strict';
 
-files = [
-    "public/Home.html", "public/About.html", "public/Legal_Framework.html", 
-    "public/The_Chronicle.html", "public/Connect.html", "public/Support.html", 
-    "public/Privacy.html", "public/Reports.html"
-]
+const fs = require('fs');
+const path = require('path');
 
-aieo_template = """
+const files = [
+  'public/Home.html',
+  'public/About.html',
+  'public/Legal_Framework.html',
+  'public/The_Chronicle.html',
+  'public/Connect.html',
+  'public/Support.html',
+  'public/Privacy.html',
+  'public/Reports.html',
+];
+
+const aieoTemplate = `
 <!-- SEO & AiEO Optimizations -->
 <meta name="description" content="Nagaland State Commission for Women. Empowering women, advancing Nagaland through legal frameworks, support directories, and social equity." />
 <meta name="keywords" content="Nagaland, Women, Commission, Empowerment, Equality, NSCW, Legal Framework, Support" />
@@ -39,9 +47,9 @@ aieo_template = """
 }
 </script>
 <!-- End SEO & AiEO -->
-"""
+`;
 
-mobile_menu_js = """
+const mobileMenuJs = `
 <!-- Mobile Nav & Optimization Script -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -78,34 +86,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
-"""
+`;
 
-for file_path in files:
-    if os.path.exists(file_path):
-        with open(file_path, "r", encoding="utf-8") as f:
-            content = f.read()
+for (const filePath of files) {
+  if (!fs.existsSync(filePath)) continue;
 
-        # Extract title
-        title_match = re.search(r"<title>(.*?)</title>", content)
-        title = title_match.group(1) if title_match else "Empowering Women"
-        
-        # Inject SEO & AiEO
-        if "application/ld+json" not in content:
-            head_injection = aieo_template.replace("{title}", title)
-            content = content.replace("</head>", head_injection + "\n</head>")
-            
-        # Inject Mobile Nav Script
-        if "mobile-menu-btn" not in content:
-            content = content.replace("</body>", mobile_menu_js + "\n</body>")
+  let content = fs.readFileSync(filePath, 'utf8');
 
-        # Basic responsiveness global replacements
-        content = content.replace('px-12 md:px-24', 'px-6 md:px-12 lg:px-24')
-        content = content.replace('px-12 py-8', 'px-6 md:px-12 py-4 md:py-8')
-        content = content.replace('px-12 py-16', 'px-6 md:px-12 py-8 md:py-16')
-        content = content.replace('text-5xl md:text-7xl', 'text-4xl sm:text-5xl md:text-7xl')
-        content = content.replace('h-screen', 'min-h-screen') 
-        
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(content)
-            
-print("AiEO, SEO and Mobile Device Optimizations have been applied to all HTML pages.")
+  // Extract title
+  const titleMatch = content.match(/<title>(.*?)<\/title>/);
+  const title = titleMatch ? titleMatch[1] : 'Empowering Women';
+
+  // Inject SEO & AiEO
+  if (!content.includes('application/ld+json')) {
+    const headInjection = aieoTemplate.replace(/\{title\}/g, title);
+    content = content.replace('</head>', headInjection + '\n</head>');
+  }
+
+  // Inject Mobile Nav Script
+  if (!content.includes('mobile-menu-btn')) {
+    content = content.replace('</body>', mobileMenuJs + '\n</body>');
+  }
+
+  // Basic responsiveness global replacements
+  content = content.replace(/px-12 md:px-24/g, 'px-6 md:px-12 lg:px-24');
+  content = content.replace(/px-12 py-8/g, 'px-6 md:px-12 py-4 md:py-8');
+  content = content.replace(/px-12 py-16/g, 'px-6 md:px-12 py-8 md:py-16');
+  content = content.replace(/text-5xl md:text-7xl/g, 'text-4xl sm:text-5xl md:text-7xl');
+  content = content.replace(/h-screen/g, 'min-h-screen');
+
+  fs.writeFileSync(filePath, content, 'utf8');
+}
+
+console.log('AiEO, SEO and Mobile Device Optimizations have been applied to all HTML pages.');

@@ -4,11 +4,11 @@
   "description": "High-End Editorial Narrative for the Nagaland State Commission for Women (NSCW)",
   "main": "Home.html",
   "scripts": {
-    "start": "python3 scripts/dev_server.py",
-    "dev": "python3 scripts/dev_server.py",
+    "start": "node scripts/dev_server.js",
+    "dev": "node scripts/dev_server.js",
     "build": "echo \"Build complete - static site ready for deployment\"",
-    "optimize": "python3 scripts/optimize.py",
-    "migrate": "python3 scripts/migrate_to_clean_urls.py",
+    "optimize": "node scripts/optimize.js",
+    "migrate": "node scripts/migrate_to_clean_urls.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
