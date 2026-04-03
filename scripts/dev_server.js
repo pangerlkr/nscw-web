@@ -76,17 +76,21 @@ const server = http.createServer((req, res) => {
   }
 
   // Serve physical files (CSS, JS, images, etc.)
-  const filePath = path.join(process.cwd(), cleanPath);
-  if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
-    const ext = path.extname(filePath).toLowerCase();
-    const contentType = mimeTypes[ext] || 'application/octet-stream';
-    try {
-      const content = fs.readFileSync(filePath);
-      res.writeHead(200, { 'Content-Type': contentType });
-      res.end(content);
-      return;
-    } catch {
-      // fall through to 404
+  // Guard against path traversal: ensure the resolved path stays within cwd
+  const root = path.resolve(process.cwd());
+  const filePath = path.resolve(root, '.' + cleanPath);
+  if (filePath.startsWith(root + path.sep) || filePath === root) {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      const ext = path.extname(filePath).toLowerCase();
+      const contentType = mimeTypes[ext] || 'application/octet-stream';
+      try {
+        const content = fs.readFileSync(filePath);
+        res.writeHead(200, { 'Content-Type': contentType });
+        res.end(content);
+        return;
+      } catch {
+        // fall through to 404
+      }
     }
   }
 
