@@ -1,7 +1,16 @@
-import http.server
-import socketserver
-import os
 import sys
+import os
+
+try:
+    import http.server
+    import socketserver
+except ModuleNotFoundError as e:
+    print(f"Error: Required Python standard library module not found: {e}")
+    print("Ensure you have Python 3.6 or later installed with the full standard library.")
+    print("On Debian/Ubuntu: sudo apt install python3")
+    sys.exit(1)
+
+import errno
 
 # Default PORT is 8080, can be overridden by first argument
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8080
@@ -105,7 +114,7 @@ if __name__ == "__main__":
             sys.stdout.flush()
             httpd.serve_forever()
     except OSError as e:
-        if e.errno == 48:
+        if e.errno == errno.EADDRINUSE:
             print(f"\n[ERROR] Port {PORT} is already in use.")
             print(f"Try running with a different port: python3 dev_server.py 8085")
             print(f"Or kill the existing process: lsof -ti:{PORT} | xargs kill -9")
