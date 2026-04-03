@@ -1,0 +1,40 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/Home.html",            "destination": "/",               "permanent": true },
+    { "source": "/About.html",           "destination": "/about",          "permanent": true },
+    { "source": "/Legal_Framework.html", "destination": "/legal-framework","permanent": true },
+    { "source": "/The_Chronicle.html",   "destination": "/updates",        "permanent": true },
+    { "source": "/Connect.html",         "destination": "/connect",        "permanent": true },
+    { "source": "/Support.html",         "destination": "/support",        "permanent": true },
+    { "source": "/Privacy.html",         "destination": "/privacy",        "permanent": true },
+    { "source": "/Reports.html",         "destination": "/reports",        "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/",               "destination": "/Home.html" },
+    { "source": "/about",          "destination": "/About.html" },
+    { "source": "/legal-framework","destination": "/Legal_Framework.html" },
+    { "source": "/updates",        "destination": "/The_Chronicle.html" },
+    { "source": "/connect",        "destination": "/Connect.html" },
+    { "source": "/support",        "destination": "/Support.html" },
+    { "source": "/privacy",        "destination": "/Privacy.html" },
+    { "source": "/reports",        "destination": "/Reports.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options",        "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy",        "value": "strict-origin-when-cross-origin" }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico|woff2)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    }
+  ]
+}

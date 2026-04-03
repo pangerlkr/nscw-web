@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build output
+dist/
+build/
+.next/
+out/
+.cache/
+
+# Netlify
+.netlify/
+
+# Vercel
+.vercel/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# MacOS files
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# Ide / Editors
+.vscode/
+.idea/
+
+# Local configuration
+Design_System.json
+*.png
+# Don't ignore images if they are part of the site architecture,
+# but usually screenshots or design exports like Home.png, About.png, etc. 
+# look like design source files here. I'll ignore them to be safe, 
+# or keep them if they are indeed the UI screenshots (as they were in file list).
+# Since these are UI screenshots from Stitch, I'll keep them for now, 
+# but maybe ignore them in a real repo. Actually, let's NOT ignore them yet.

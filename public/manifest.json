@@ -1,0 +1,21 @@
+{
+  "name": "Nagaland State Commission for Women",
+  "short_name": "NSCW Nagaland",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbf9f8",
+  "theme_color": "#00605f",
+  "description": "High-End Editorial Narrative for the Nagaland State Commission for Women (NSCW)",
+  "icons": [
+    {
+      "src": "/Home.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/Home.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

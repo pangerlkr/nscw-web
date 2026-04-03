@@ -1,0 +1,56 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# ── 301 Redirects: .html extensions → clean URLs ──────────────────────────────
+# These run BEFORE the rewrite-to-file rules so bookmarks/old links are upgraded.
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Home\.html[\ ?]
+RewriteRule ^Home\.html$ / [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /About\.html[\ ?]
+RewriteRule ^About\.html$ /about [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Legal_Framework\.html[\ ?]
+RewriteRule ^Legal_Framework\.html$ /legal-framework [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /The_Chronicle\.html[\ ?]
+RewriteRule ^The_Chronicle\.html$ /updates [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Connect\.html[\ ?]
+RewriteRule ^Connect\.html$ /connect [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Support\.html[\ ?]
+RewriteRule ^Support\.html$ /support [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Privacy\.html[\ ?]
+RewriteRule ^Privacy\.html$ /privacy [R=301,L]
+
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /Reports\.html[\ ?]
+RewriteRule ^Reports\.html$ /reports [R=301,L]
+
+# ── Serve clean URLs → actual .html files ────────────────────────────────────
+# Skip if the request is for an existing file or directory (assets etc.)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^$               Home.html [L]
+RewriteRule ^about$          About.html [L]
+RewriteRule ^legal-framework$ Legal_Framework.html [L]
+RewriteRule ^updates$        The_Chronicle.html [L]
+RewriteRule ^connect$        Connect.html [L]
+RewriteRule ^support$        Support.html [L]
+RewriteRule ^privacy$        Privacy.html [L]
+RewriteRule ^reports$        Reports.html [L]
+
+# ── Query string passthrough ──────────────────────────────────────────────────
+# Preserve query parameters on any rewrite
+RewriteCond %{QUERY_STRING} .+
+RewriteRule ^ - [QSA,L]
+
+# ── Security headers ──────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>

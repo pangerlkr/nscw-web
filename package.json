@@ -1,0 +1,26 @@
+{
+  "name": "nscw-web-experience",
+  "version": "1.0.0",
+  "description": "High-End Editorial Narrative for the Nagaland State Commission for Women (NSCW)",
+  "main": "Home.html",
+  "scripts": {
+    "start": "python3 scripts/dev_server.py",
+    "dev": "python3 scripts/dev_server.py",
+    "optimize": "python3 scripts/optimize.py",
+    "migrate": "python3 scripts/migrate_to_clean_urls.py",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NSCW",
+    "Nagaland",
+    "Women Commission",
+    "Editorial Design",
+    "High-End",
+    "Tailwind",
+    "Static Site"
+  ],
+  "author": "Nagaland State Commission for Women",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}

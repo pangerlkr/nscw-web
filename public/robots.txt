@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /_redirects
+Disallow: /netlify.toml
+Disallow: /package.json
+Disallow: /.htaccess
+Disallow: /nginx.conf
+Disallow: /PRD.md
+Disallow: /Design_System.json
+Disallow: /*.py
+Disallow: /LICENSE
+Disallow: /vercel.json
+
+Sitemap: https://nscw.nagaland.gov.in/sitemap.xml
