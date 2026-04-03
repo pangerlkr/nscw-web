@@ -1,0 +1,345 @@
+# Instincts generated from https://github.com/pangerlkr/test
+# Generated: 2026-04-03T17:07:46.092Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: test-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: fix, feat
+
+## Evidence
+
+- 4 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat: replace Python scripts with Node.js equivalents, remove Python dependency, fix: prevent path traversal in dev_server.js static file serving
+
+---
+id: test-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Commit Length
+
+## Action
+
+Write moderate-length commit messages (~72 characters)
+
+## Evidence
+
+- Average commit message length: 72 chars
+- Based on 4 commits
+
+---
+id: test-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Naming Files
+
+## Action
+
+Use snake_case naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: snake_case
+
+---
+id: test-import-relative
+trigger: "when importing modules"
+confidence: 0.75
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Import Relative
+
+## Action
+
+Use relative imports for project files
+
+## Evidence
+
+- Import analysis shows relative import pattern
+- Example: import { x } from '../lib/x'
+
+---
+id: test-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: test-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: test-workflow-iterative-bugfix-on-single-script
+trigger: "when doing iterative bugfix on single script"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/pangerlkr/test
+---
+
+# Test Workflow Iterative Bugfix On Single Script
+
+## Action
+
+Follow the iterative-bugfix-on-single-script workflow:
+1. Identify issue in script (e.g., security vulnerability).
+2. Make a fix and commit changes to the script file.
+3. Test the fix; if incomplete, make further adjustments.
+4. Repeat commit(s) to the same script file until the issue is resolved.
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: scripts/dev_server.js
+
+---
+id: test-instinct-file-naming-snake-case
+trigger: "When creating a new file in the repository"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct File Naming Snake Case
+
+## Action
+
+Name the file using snake_case
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.files
+- Consistent with existing files
+
+---
+id: test-instinct-function-naming-camel-case
+trigger: "When defining a new function"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Function Naming Camel Case
+
+## Action
+
+Use camelCase for function names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+
+---
+id: test-instinct-class-naming-pascal-case
+trigger: "When defining a new class"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Class Naming Pascal Case
+
+## Action
+
+Use PascalCase for class names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: test-instinct-constant-naming-screaming-snake-case
+trigger: "When defining a constant"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Constant Naming Screaming Snake Case
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constant names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: test-instinct-import-style-relative
+trigger: "When importing modules in JavaScript files"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Import Style Relative
+
+## Action
+
+Use relative import paths
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: test-instinct-export-style-named
+trigger: "When exporting functions or variables from a module"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Export Style Named
+
+## Action
+
+Use named exports
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: test-instinct-testing-separate-location
+trigger: "When adding or updating tests"
+confidence: 0.7
+domain: testing
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Testing Separate Location
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+
+---
+id: test-instinct-commit-conventional-format
+trigger: "When writing a git commit message"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Commit Conventional Format
+
+## Action
+
+Use the conventional commit format with a type prefix (e.g., 'fix:', 'feat:')
+
+## Evidence
+
+- Pattern in commits.type: conventional
+- Examples: 'fix: prevent path traversal...', 'feat: replace Python scripts...'
+
+---
+id: test-instinct-commit-length-70-80-chars
+trigger: "When writing a git commit message"
+confidence: 0.7
+domain: git
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Commit Length 70 80 Chars
+
+## Action
+
+Keep the commit message length around 70-80 characters
+
+## Evidence
+
+- Pattern in commits.averageLength: 72
+
+---
+id: test-instinct-iterative-bugfix-script
+trigger: "When a bug or security vulnerability is found in a script file (e.g., scripts/dev_server.js)"
+confidence: 0.92
+domain: workflow
+source: repo-analysis
+source_repo: pangerlkr/test
+---
+
+# Test Instinct Iterative Bugfix Script
+
+## Action
+
+Apply rapid, repeated fixes and improvements to the script, committing after each significant adjustment until the issue is resolved
+
+## Evidence
+
+- Workflow: iterative-bugfix-on-single-script
+- Commit sequence: multiple 'fix:' commits to scripts/dev_server.js
+
