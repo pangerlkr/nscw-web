@@ -39,6 +39,7 @@ const mimeTypes = {
   '.ttf': 'font/ttf',
   '.otf': 'font/otf',
   '.webp': 'image/webp',
+  '.pdf': 'application/pdf',
 };
 
 const server = http.createServer((req, res) => {
