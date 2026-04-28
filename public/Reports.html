@@ -92,130 +92,191 @@
     Report an Issue
 </button>
 </nav>
-<!-- Main Content Canvas -->
-<main class="pt-28 min-h-screen">
-<!-- Sequential Header Section -->
-<section class="px-8 md:px-16 py-12 max-w-7xl mx-auto">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
-<div class="space-y-4">
-<span class="text-secondary font-label font-bold tracking-[0.3em] uppercase text-xs">Chapter 08</span>
-<h1 class="text-4xl sm:text-4xl sm:text-4xl sm:text-5xl md:text-7xl font-headline font-extrabold text-primary leading-[1.1] tracking-tighter">
-                        The Annual <br/><span class="text-secondary">Chronicle</span>
+<main class="min-h-screen pt-32 pb-24 px-6 md:px-12 lg:px-24">
+<!-- Header Section -->
+<header class="max-w-4xl mb-16 relative">
+<div class="flex items-center gap-4 mb-6">
+<div class="h-[2px] w-12 bg-secondary"></div>
+<span class="font-label text-sm uppercase tracking-widest text-secondary font-bold">The Archive</span>
+</div>
+<h1 class="font-headline text-6xl md:text-7xl font-extrabold text-primary leading-tight mb-6">
+    Annual Reports<br/>
+    <span class="text-tertiary">&amp; Documents</span>
 </h1>
-</div>
-<div class="max-w-md text-right md:text-left">
-<p class="text-tertiary font-body text-lg leading-relaxed opacity-80">
-                        An archive of institutional progress, documenting our commitment to the empowerment of women across Nagaland. Transparency as a pillar of progress.
-                    </p>
-</div>
-</div>
-<!-- Bento Archive Grid -->
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-24">
-<!-- Main Featured Report Slide -->
-<div class="md:col-span-2 bg-primary rounded-xl overflow-hidden relative min-h-[400px] flex items-end p-10 group editorial-shadow">
+<p class="font-body text-xl text-on-surface-variant max-w-2xl leading-relaxed">
+    An archive of institutional progress, documenting our commitment to the empowerment of women across Nagaland. Transparency as a pillar of governance.
+</p>
+</header>
+
+<!-- Bento Grid Layout matching Updates page -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-24">
+<!-- Featured Report: 2023-2024 -->
+<article class="md:col-span-8 group relative overflow-hidden rounded-xl bg-surface-container-low min-h-[500px] flex flex-col justify-end p-10">
 <div class="absolute inset-0 z-0">
-<img alt="2023-2024 Report Cover" class="w-full h-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" data-alt="abstract close-up of vibrant Naga textile patterns with intricate geometric weaves in deep red and teal" src="https://picsum.photos/seed/nscw-textile/800/600"/>
+<img alt="Annual Report 2023-2024" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 mix-blend-multiply" data-alt="abstract close-up of vibrant Naga textile patterns with intricate geometric weaves in deep red and teal" src="https://picsum.photos/seed/nscw-textile/800/600"/>
 <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent"></div>
 </div>
-<div class="relative z-10 w-full flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="relative z-10">
+<div class="flex items-center gap-3 mb-4">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label text-[10px] font-bold tracking-tighter uppercase">Current Volume</span>
+<span class="text-primary-fixed-dim font-label text-xs">Financial Year 2023–2024</span>
+</div>
+<h2 class="font-headline text-4xl md:text-5xl font-bold text-on-primary-container mb-4">Annual Report 2023–2024</h2>
+<p class="font-body text-lg text-primary-fixed-dim/90 max-w-xl mb-6">
+    Comprehensive review of legal aid, community outreach, policy advocacy, and grievance redressal across Nagaland's 11 districts.
+</p>
+<a href="NL-NSCW-Act.pdf" target="_blank" class="group inline-flex items-center gap-3 font-headline font-bold text-secondary-fixed transition-all hover:gap-5">
+    DOWNLOAD PDF
+    <span class="material-symbols-outlined">download</span>
+</a>
+</div>
+</article>
+
+<!-- Secondary: Stats snapshot -->
+<article class="md:col-span-4 bg-tertiary-container rounded-xl p-8 flex flex-col justify-between border-b-4 border-secondary-fixed-dim">
 <div>
-<span class="inline-block px-3 py-1 bg-secondary text-on-secondary text-[10px] font-bold tracking-widest uppercase mb-4 rounded-sm">Current Volume</span>
-<h2 class="text-4xl font-headline font-bold text-white mb-2">Annual Report 2023-2024</h2>
-<p class="text-white/60 font-body max-w-sm">Comprehensive review of legal aid, community outreach, and policy advocacy initiatives for the current fiscal year.</p>
+<span class="material-symbols-outlined text-4xl text-tertiary-fixed mb-6" style="font-variation-settings: 'FILL' 1,'wght' 400,'GRAD' 0,'opsz' 24;">bar_chart</span>
+<h3 class="font-headline text-2xl font-bold text-on-tertiary-container mb-4">By the Numbers<br/>2023–2024</h3>
+<div class="space-y-4 mt-6">
+<div class="flex justify-between items-center border-b border-tertiary-fixed/20 pb-3">
+<span class="font-body text-sm text-tertiary-fixed/80">Cases Addressed</span>
+<span class="font-headline font-bold text-on-tertiary-container">4,800+</span>
 </div>
-<button class="bg-surface-container-lowest text-primary px-8 py-4 rounded-xl font-headline font-bold flex items-center gap-3 hover:bg-secondary hover:text-white transition-all duration-300 shadow-xl group/btn">
-                            Download PDF
-                            <span class="material-symbols-outlined group-hover/btn:translate-y-1 transition-transform">download</span>
+<div class="flex justify-between items-center border-b border-tertiary-fixed/20 pb-3">
+<span class="font-body text-sm text-tertiary-fixed/80">Policy Actions</span>
+<span class="font-headline font-bold text-on-tertiary-container">124</span>
+</div>
+<div class="flex justify-between items-center border-b border-tertiary-fixed/20 pb-3">
+<span class="font-body text-sm text-tertiary-fixed/80">Districts Covered</span>
+<span class="font-headline font-bold text-on-tertiary-container">11</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body text-sm text-tertiary-fixed/80">Legal Aid Camps</span>
+<span class="font-headline font-bold text-on-tertiary-container">38</span>
+</div>
+</div>
+</div>
+<div class="mt-8">
+<a href="/milestones" class="inline-flex items-center gap-2 bg-on-tertiary-container text-tertiary-container px-6 py-3 rounded-lg font-headline font-bold text-sm transition-transform hover:-translate-y-1">
+    VIEW MILESTONES
+    <span class="material-symbols-outlined text-sm">military_tech</span>
+</a>
+</div>
+</article>
+
+<!-- Report Card: 2022-2023 -->
+<article class="md:col-span-4 bg-surface-container-highest rounded-xl p-6 transition-all hover:shadow-xl hover:shadow-primary/5">
+<div class="aspect-video rounded-lg overflow-hidden mb-6 bg-surface-dim">
+<img alt="Report 2022-2023" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="women leaders in a formal conference room at a Nagaland government building, warm lighting" src="https://picsum.photos/seed/nscw-report22/800/600"/>
+</div>
+<div class="mb-2 flex justify-between items-center">
+<span class="font-label text-[10px] font-bold text-secondary uppercase tracking-widest">Annual Report</span>
+<span class="font-label text-[10px] text-outline">2022–2023</span>
+</div>
+<h4 class="font-headline text-lg font-bold text-primary mb-3">Grassroots Leadership &amp; Socio-Economic Impact</h4>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mb-4">
+    Focus on district-level leadership training, socio-economic assessments, and expanded outreach for rural women across Nagaland.
+</p>
+<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm hover:gap-4 transition-all">
+    DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
 </button>
+</article>
+
+<!-- Report Card: 2021-2022 -->
+<article class="md:col-span-4 bg-surface-container-highest rounded-xl p-6 transition-all hover:shadow-xl hover:shadow-primary/5">
+<div class="aspect-video rounded-lg overflow-hidden mb-6 bg-surface-dim">
+<img alt="Report 2021-2022" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="rural women in Nagaland gathered for a digital literacy workshop outdoors, vibrant community setting" src="https://picsum.photos/seed/nscw-report21/800/600"/>
 </div>
+<div class="mb-2 flex justify-between items-center">
+<span class="font-label text-[10px] font-bold text-secondary uppercase tracking-widest">Annual Report</span>
+<span class="font-label text-[10px] text-outline">2021–2022</span>
 </div>
-<!-- Regular Report Card 1 -->
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between group hover:bg-surface-container-high transition-colors editorial-shadow">
-<div>
-<div class="w-12 h-1 bg-secondary mb-8 transition-all group-hover:w-20"></div>
-<h3 class="text-2xl font-headline font-bold text-primary mb-2">2022-2023</h3>
-<p class="text-tertiary/60 font-body text-sm leading-relaxed mb-8">Focus on socio-economic impact assessments and grassroots leadership programs.</p>
-</div>
-<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm group-hover:gap-4 transition-all">
-                        DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
+<h4 class="font-headline text-lg font-bold text-primary mb-3">Pandemic Resilience &amp; Digital Literacy</h4>
+<p class="font-body text-sm text-on-surface-variant line-clamp-3 mb-4">
+    Pandemic-era response strategies, emergency helpline coordination, and digital literacy drives for rural women entrepreneurs across 6 districts.
+</p>
+<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm hover:gap-4 transition-all">
+    DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
 </button>
+</article>
+
+<!-- Archive CTA Card -->
+<article class="md:col-span-4 bg-primary rounded-xl p-8 flex flex-col items-center justify-center text-center">
+<div class="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center mb-6">
+<span class="material-symbols-outlined text-3xl text-on-primary-container">archive</span>
 </div>
-<!-- Regular Report Card 2 -->
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between group hover:bg-surface-container-high transition-colors editorial-shadow">
-<div>
-<div class="w-12 h-1 bg-secondary mb-8 transition-all group-hover:w-20"></div>
-<h3 class="text-2xl font-headline font-bold text-primary mb-2">2021-2022</h3>
-<p class="text-tertiary/60 font-body text-sm leading-relaxed mb-8">Pandemic resilience strategies and digital literacy drives for rural women entrepreneurs.</p>
-</div>
-<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm group-hover:gap-4 transition-all">
-                        DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
+<h4 class="font-headline text-xl font-bold text-on-primary mb-4">The Full Archive</h4>
+<p class="font-body text-sm text-primary-fixed-dim/80 mb-8">
+    Access all annual reports from 2009 onwards — press releases, gazette notifications, and institutional records.
+</p>
+<button class="w-full py-3 rounded-lg border border-primary-fixed-dim text-primary-fixed-dim font-headline font-bold text-sm tracking-wider uppercase hover:bg-primary-container hover:border-transparent transition-colors">
+    EXPLORE ARCHIVES
 </button>
+</article>
+
+<!-- Older Reports Row -->
+<article class="md:col-span-4 bg-surface-container-highest rounded-xl p-6 transition-all hover:shadow-xl hover:shadow-primary/5">
+<div class="mb-2 flex justify-between items-center">
+<span class="font-label text-[10px] font-bold text-secondary uppercase tracking-widest">Annual Report</span>
+<span class="font-label text-[10px] text-outline">2020–2021</span>
 </div>
-<!-- Regular Report Card 3 -->
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between group hover:bg-surface-container-high transition-colors editorial-shadow">
-<div>
-<div class="w-12 h-1 bg-secondary mb-8 transition-all group-hover:w-20"></div>
-<h3 class="text-2xl font-headline font-bold text-primary mb-2">2020-2021</h3>
-<p class="text-tertiary/60 font-body text-sm leading-relaxed mb-8">Special edition focusing on legislative amendments and women's health access.</p>
-</div>
-<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm group-hover:gap-4 transition-all">
-                        DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
+<h4 class="font-headline text-lg font-bold text-primary mb-3">Legislative Amendments &amp; Health Access</h4>
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">Special edition focusing on key legislative amendments and expanding women's health access across remote districts.</p>
+<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm hover:gap-4 transition-all">
+    DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
 </button>
+</article>
+
+<article class="md:col-span-4 bg-surface-container-highest rounded-xl p-6 transition-all hover:shadow-xl hover:shadow-primary/5">
+<div class="mb-2 flex justify-between items-center">
+<span class="font-label text-[10px] font-bold text-secondary uppercase tracking-widest">Annual Report</span>
+<span class="font-label text-[10px] text-outline">2019–2020</span>
 </div>
-<!-- Stats Highlight Slide (Asymmetric) -->
-<div class="lg:col-span-2 bg-secondary/5 rounded-xl p-10 border-l-4 border-secondary flex flex-col md:flex-row items-center gap-12 editorial-shadow">
-<div class="flex-1">
-<h4 class="text-secondary font-headline font-bold text-3xl mb-4 italic">"Transparency is the foundation of trust."</h4>
-<p class="text-primary/70 font-body italic">— Chairperson's Foreword, Vol. 08</p>
-</div>
-<div class="flex gap-8">
-<div class="text-center">
-<span class="block text-4xl font-headline font-extrabold text-primary">15+</span>
-<span class="text-[10px] font-label font-bold uppercase tracking-widest text-secondary">Years of Records</span>
-</div>
-<div class="text-center">
-<span class="block text-4xl font-headline font-extrabold text-primary">124</span>
-<span class="text-[10px] font-label font-bold uppercase tracking-widest text-secondary">Policy Actions</span>
-</div>
-</div>
-</div>
-<!-- Regular Report Card 4 -->
-<div class="bg-surface-container-low p-8 rounded-xl flex flex-col justify-between group hover:bg-surface-container-high transition-colors editorial-shadow">
-<div>
-<div class="w-12 h-1 bg-secondary mb-8 transition-all group-hover:w-20"></div>
-<h3 class="text-2xl font-headline font-bold text-primary mb-2">2019-2020</h3>
-<p class="text-tertiary/60 font-body text-sm leading-relaxed mb-8">Reflections on a decade of institutional growth and future-looking mandates.</p>
-</div>
-<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm group-hover:gap-4 transition-all">
-                        DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
+<h4 class="font-headline text-lg font-bold text-primary mb-3">A Decade of Institutional Growth</h4>
+<p class="font-body text-sm text-on-surface-variant mb-4 leading-relaxed">Reflections on ten years of institutional advancement, community impact, and aspirations for the decade ahead.</p>
+<button class="flex items-center gap-2 text-secondary font-headline font-bold text-sm hover:gap-4 transition-all">
+    DOCUMENT ARCHIVE <span class="material-symbols-outlined">arrow_forward</span>
 </button>
+</article>
+
+<!-- Quote / Callout -->
+<article class="md:col-span-4 bg-secondary/5 rounded-xl p-8 border-l-4 border-secondary flex flex-col justify-center">
+<p class="font-headline text-xl font-bold text-secondary italic mb-4">"Transparency is the foundation of trust."</p>
+<p class="font-body text-sm text-primary/70 italic">— Chairperson's Foreword, Annual Report Vol. 08</p>
+<a href="/milestones" class="inline-flex items-center gap-2 mt-8 font-label font-bold text-xs text-secondary uppercase tracking-widest hover:underline">
+    View Milestones <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</article>
 </div>
-</div>
-</section>
+</main>
+
 <!-- Footer -->
-<footer class="bg-purple-950 dark:bg-black w-full py-16 px-6 md:px-12 border-t border-white/5">
-<div class="flex flex-col md:flex-row justify-between items-center max-w-screen-2xl mx-auto gap-12">
-<div class="text-center md:text-left flex flex-col md:flex-row items-center gap-6">
-    <img src="images/nscw.jpg" class="h-16 w-auto brightness-125" alt="NSCW Logo">
-    <div>
-        <div class="font-headline font-black text-white text-2xl mb-1 tracking-widest uppercase">NSCW Nagaland</div>
-        <p class="font-body text-xs tracking-wide text-purple-200/40">© 2026 Nagaland State Commission for Women. An Empowering Narrative.</p>
+<footer class="bg-purple-950 dark:bg-black w-full py-16 px-6 md:px-12 border-t border-white/5 mt-auto">
+<div class="max-w-7xl mx-auto w-full space-y-12">
+    <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60 hover:opacity-100 transition-opacity duration-500 pb-12 border-b border-white/5">
+        <img src="images/GoN.webp" class="h-20 md:h-28 w-auto brightness-[2] grayscale hover:grayscale-0 transition-all" alt="Government of Nagaland">
+        <img src="images/ncw.webp" class="h-20 md:h-28 w-auto brightness-[2] grayscale hover:grayscale-0 transition-all" alt="National Commission for Women">
+        <img src="images/dsw.webp" class="h-20 md:h-28 w-auto brightness-[2] grayscale hover:grayscale-0 transition-all" alt="Department of Social Welfare Nagaland">
+    </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-8">
+        <div class="text-center md:text-left flex flex-col md:flex-row items-center gap-6">
+            <img src="images/nscw.jpg" class="h-16 w-auto brightness-125" alt="NSCW Logo">
+            <div>
+                <div class="font-headline font-black text-white text-2xl mb-1 tracking-widest uppercase">NSCW Nagaland</div>
+                <p class="font-body text-xs tracking-wide text-purple-200/40">© 2026 Nagaland State Commission for Women. An Empowering Narrative.</p>
+            </div>
+        </div>
+        <div class="flex flex-wrap justify-center gap-8 items-center text-purple-300 font-body text-sm">
+            <a class="hover:text-white transition-colors" href="/">Home</a>
+            <a class="hover:text-white transition-colors" href="/about">About</a>
+            <a class="hover:text-white transition-colors" href="/legal-framework">Legal Framework</a>
+            <a class="hover:text-white transition-colors" href="/updates">Updates</a>
+            <a class="hover:text-white transition-colors" href="/support">Support</a>
+            <a class="hover:text-white transition-colors text-secondary-container font-bold" href="/grievance">Report an Issue</a>
+        </div>
     </div>
 </div>
-<div class="flex flex-wrap gap-x-12 gap-y-6">
-<a class="text-purple-200/40 hover:text-white transition-colors text-sm font-label uppercase tracking-widest" href="/privacy">Privacy Policy</a>
-<a class="text-yellow-500 transition-colors text-sm font-label uppercase tracking-widest" href="/reports">Annual Reports</a>
-<a class="text-purple-200/40 hover:text-white transition-colors text-sm font-label uppercase tracking-widest" href="#">Resource Center</a>
-<a class="text-purple-200/40 hover:text-white transition-colors text-sm font-label uppercase tracking-widest" href="#">Internal Login</a>
-</div>
-</div>
-<div class="max-w-screen-2xl mx-auto mt-12 pt-8 border-t border-white/5">
-<p class="text-purple-200/20 text-xs font-body tracking-wider uppercase">
-                    © 2024 Nagaland State Commission for Women. An Editorial Digital Chronicle.
-                </p>
-</div>
 </footer>
-</main>
 <!-- Bottom Navigation Bar (Mobile) -->
 <nav class="fixed bottom-0 left-0 right-0 bg-purple-900/80 glass-nav md:hidden flex justify-around items-center py-4 z-50">
 <button class="flex flex-col items-center gap-1 text-white/60">
