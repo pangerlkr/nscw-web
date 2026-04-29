@@ -102,17 +102,27 @@
 <span class="material-symbols-outlined text-secondary">location_on</span>
                             Statewide Presence
                         </h3>
-<div class="w-full rounded-lg overflow-hidden border border-outline-variant/30" style="height:420px;">
-<iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.4524138743385!2d94.10392205621429!3d25.684989592347026!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3746219bbd26d885%3A0x708097e5eb52e64a!2sNagaland%20State%20Commission%20for%20Women!5e0!3m2!1sen!2sin!4v1777438127300!5m2!1sen!2sin"
-    width="100%"
-    height="100%"
-    style="border:0; display:block;"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-</iframe>
+<div class="w-full rounded-lg overflow-hidden border border-outline-variant/30 relative group" style="height:420px;">
+  <a href="https://maps.google.com/?q=Nagaland+State+Commission+for+Women,+Kohima" target="_blank" rel="noopener noreferrer" class="block w-full h-full" aria-label="Open location in Google Maps">
+    <img
+      src="https://maps.googleapis.com/maps/api/staticmap?center=25.684990,94.103922&zoom=15&size=800x420&maptype=roadmap&markers=color:red%7C25.684990,94.103922&style=feature:all%7Celement:labels.text.fill%7Ccolor:0x333333&key=AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY"
+      alt="Map showing NSCW office location in Kohima, Nagaland"
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      onerror="this.parentElement.parentElement.innerHTML=mapFallback()"
+    />
+    <div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300 flex items-center justify-center">
+      <span class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white/90 text-primary font-headline font-bold text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">open_in_new</span>
+        Open in Google Maps
+      </span>
+    </div>
+  </a>
 </div>
+<script>
+function mapFallback() {
+  return '<a href="https://maps.google.com/?q=Nagaland+State+Commission+for+Women,+Kohima" target="_blank" rel="noopener noreferrer" class="flex flex-col items-center justify-center w-full h-full bg-surface-container gap-4 text-primary hover:bg-surface-container-high transition-colors"><span class=\'material-symbols-outlined text-5xl text-secondary\'>location_on</span><span class=\'font-headline font-bold text-base\'>View on Google Maps</span><span class=\'text-sm text-on-surface-variant\'>Nagaland State Commission for Women, Kohima</span></a>';
+}
+</script>
 <p class="mt-4 text-sm text-on-surface-variant italic font-body">
                             The Commission operates from the capital, Kohima, ensuring outreach to all districts across the state.
                         </p>
@@ -286,13 +296,32 @@ document.addEventListener('DOMContentLoaded', () => {
   </a>
 </div>
 <!-- Floating App Download Button -->
-<div class="fixed left-5 bottom-8 z-50" id="floating-app-download">
-  <a href="#" aria-label="Download the NSCW App"
-     class="flex items-center gap-2.5 bg-primary text-on-primary pl-3 pr-4 py-2.5 rounded-full shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0" fill="currentColor">
+<!-- Floating App Download Button -->
+<div class="fixed left-5 bottom-8 z-50 flex flex-col gap-2" id="floating-app-download">
+  <!-- App Store -->
+  <a href="#" aria-label="Download on the App Store"
+     class="flex items-center gap-2 bg-black text-white pl-3 pr-4 py-2 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 border border-white/10">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0" fill="white">
       <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.4c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.39-1.32 2.76-2.54 3.99zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
     </svg>
-    <span class="font-headline font-bold text-xs uppercase tracking-wider leading-none">Download App</span>
+    <div class="flex flex-col leading-none">
+      <span class="text-[9px] font-label opacity-70 tracking-wider">Download on the</span>
+      <span class="font-headline font-bold text-xs tracking-wide">App Store</span>
+    </div>
+  </a>
+  <!-- Google Play -->
+  <a href="#" aria-label="Get it on Google Play"
+     class="flex items-center gap-2 bg-black text-white pl-3 pr-4 py-2 rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-xl active:scale-95 border border-white/10">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-5 h-5 flex-shrink-0" fill="none">
+      <path d="M3.18 23.76c.28.16.6.19.91.08l11.55-6.67-2.89-2.89-9.57 9.48z" fill="#EA4335"/>
+      <path d="M22.59 10.27L19.7 8.6l-3.24 3.22 3.24 3.24 2.9-1.68c.83-.48.83-1.64-.01-2.11z" fill="#FBBC05"/>
+      <path d="M3.18.24C2.87.13 2.55.16 2.27.32L14.17 12l2.89-2.89L3.18.24z" fill="#4285F4"/>
+      <path d="M2.27.32C1.74.63 1.39 1.21 1.39 1.92v20.16c0 .71.35 1.29.88 1.6L14.17 12 2.27.32z" fill="#34A853"/>
+    </svg>
+    <div class="flex flex-col leading-none">
+      <span class="text-[9px] font-label opacity-70 tracking-wider">Get it on</span>
+      <span class="font-headline font-bold text-xs tracking-wide">Google Play</span>
+    </div>
   </a>
 </div>
 </body></html>
