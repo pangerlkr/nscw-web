@@ -70,7 +70,10 @@ const server = http.createServer((req, res) => {
     process.stdout.write(`Serving Clean URL: ${req.url} via ${targetFile}\n`);
     try {
       const content = fs.readFileSync(targetFile);
-      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.writeHead(200, {
+        'Content-Type': 'text/html',
+        'Content-Security-Policy': "default-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.gstatic.com; frame-src https://www.google.com https://maps.google.com;",
+      });
       res.end(content);
       return;
     } catch {
@@ -94,7 +97,11 @@ const server = http.createServer((req, res) => {
       const ext = path.extname(realFilePath).toLowerCase();
       const contentType = mimeTypes[ext] || 'application/octet-stream';
       const content = fs.readFileSync(realFilePath);
-      res.writeHead(200, { 'Content-Type': contentType });
+      const headers = { 'Content-Type': contentType };
+      if (ext === '.html') {
+        headers['Content-Security-Policy'] = "default-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://maps.googleapis.com https://maps.gstatic.com https://*.googleapis.com https://*.gstatic.com; frame-src https://www.google.com https://maps.google.com;";
+      }
+      res.writeHead(200, headers);
       res.end(content);
       return;
     }
