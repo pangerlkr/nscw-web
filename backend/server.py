@@ -79,8 +79,8 @@ def set_auth_cookies(response: Response, access: str, refresh: str) -> None:
 
 
 def clear_auth_cookies(response: Response) -> None:
-    response.delete_cookie("access_token", path="/")
-    response.delete_cookie("refresh_token", path="/")
+    response.delete_cookie("access_token", path="/", samesite="none", secure=True)
+    response.delete_cookie("refresh_token", path="/", samesite="none", secure=True)
 
 
 async def get_current_user(request: Request) -> dict:
@@ -359,15 +359,30 @@ async def startup():
 
 
 # ---------- Auth routes ----------
+def _client_ip(request: Request) -> str:
+    xff = request.headers.get("x-forwarded-for", "")
+    if xff:
+        return xff.split(",")[0].strip()
+    return request.client.host if request.client else "unknown"
+
+
 @api.post("/auth/login")
 async def login(body: LoginBody, request: Request, response: Response):
     email = body.email.lower()
-    identifier = f"{request.client.host if request.client else 'unknown'}:{email}"
+    # Key lockout on email only so that split-proxy environments (kube ingress) do not
+    # split the counter across multiple identifiers.
+    identifier = f"email:{email}"
 
     # brute-force check
     attempts = await db.login_attempts.find_one({"_id": identifier})
-    if attempts and attempts.get("count", 0) >= 5 and attempts.get("locked_until") and attempts["locked_until"] > datetime.now(timezone.utc):
-        raise HTTPException(status_code=429, detail="Too many failed attempts. Try again later.")
+    if attempts and attempts.get("count", 0) >= 5:
+        locked_until = attempts.get("locked_until")
+        if locked_until is not None:
+            # Mongo may return naive datetime; normalize to UTC
+            if locked_until.tzinfo is None:
+                locked_until = locked_until.replace(tzinfo=timezone.utc)
+            if locked_until > datetime.now(timezone.utc):
+                raise HTTPException(status_code=429, detail="Too many failed attempts. Try again later.")
 
     user = await db.users.find_one({"email": email})
     if not user or not verify_password(body.password, user["password_hash"]):
@@ -473,7 +488,8 @@ async def delete_user(user_id: str, user: dict = Depends(require_admin)):
 
 # ---------- Public content routes ----------
 @api.get("/content/homepage")
-async def get_homepage():
+async def get_homepage(response: Response):
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
     doc = await db.site_content.find_one({"_id": "homepage"}, {"_id": 0})
     return doc or HomepageContent().model_dump()
 
@@ -485,7 +501,8 @@ async def update_homepage(body: HomepageContent, user: dict = Depends(require_ed
 
 
 @api.get("/content/about")
-async def get_about():
+async def get_about(response: Response):
+    response.headers["Cache-Control"] = "no-store, no-cache, must-revalidate"
     doc = await db.site_content.find_one({"_id": "about"}, {"_id": 0})
     return doc or AboutContent().model_dump()
 
