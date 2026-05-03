@@ -54,3 +54,12 @@ Design_System.json
 # or keep them if they are indeed the UI screenshots (as they were in file list).
 # Since these are UI screenshots from Stitch, I'll keep them for now, 
 # but maybe ignore them in a real repo. Actually, let's NOT ignore them yet.
+-e 
+# Environment and credential files
+.env
+.env.*
+*.env
+credentials.json
+*.pem
+*.key
+.credentials
