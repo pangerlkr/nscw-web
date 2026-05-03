@@ -1,0 +1,166 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF8FF;
+  color: #1C1A24;
+}
+
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+.text-shadow-editorial {
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.asymmetric-gradient {
+  background: linear-gradient(135deg, rgba(91, 45, 142, 0.9) 0%, rgba(30, 159, 212, 0.4) 100%);
+}
+
+/* Logo float animation used in footer */
+.logo-float {
+  animation: logoFloat 6s ease-in-out infinite;
+  filter: brightness(1.05) drop-shadow(0 4px 12px rgba(255, 255, 255, 0.08));
+}
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+/* Selection */
+::selection { background-color: #1E9FD4; color: #fff; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #F4F0FB; }
+::-webkit-scrollbar-thumb { background: #C9A6E8; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #7B42B8; }
+
+/* Reveal-on-scroll entrance */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* Form focus ring using brand */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(91, 45, 142, 0.25);
+  border-color: #5B2D8E !important;
+}
+
+/* Admin sidebar active link */
+.admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+.admin-nav-link:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+.admin-nav-link.active { background: #1175A8; color: #fff; box-shadow: 0 6px 18px rgba(17, 117, 168, 0.35); }
+.admin-nav-link .material-symbols-outlined { font-size: 20px; }
+
+/* Card */
+.cms-card {
+  background: #fff;
+  border: 1px solid rgba(203, 196, 216, 0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 1px 2px rgba(28, 26, 36, 0.04);
+}
+
+/* Button utilities */
+.btn-primary {
+  background: #5B2D8E;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-family: "Plus Jakarta Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover { background: #7B42B8; transform: translateY(-1px); box-shadow: 0 10px 22px rgba(91,45,142,0.25); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-ghost {
+  background: transparent;
+  color: #5B2D8E;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  border: 1px solid #CBC4D8;
+  transition: all 0.2s ease;
+}
+.btn-ghost:hover { background: #F4F0FB; border-color: #5B2D8E; }
+
+.btn-danger {
+  background: #ba1a1a;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-family: "Manrope", sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+}
+.btn-danger:hover { background: #93000a; }
+
+/* Form fields */
+.field-label {
+  display: block;
+  font-family: "Manrope", sans-serif;
+  font-weight: 700;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #4A4358;
+  margin-bottom: 0.5rem;
+}
+.field-input, .field-textarea, .field-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #CBC4D8;
+  border-radius: 0.5rem;
+  background: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  color: #1C1A24;
+  transition: border-color 0.2s ease;
+}
+.field-textarea { min-height: 110px; resize: vertical; }
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 0.5rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.badge-admin { background: #F0E2FF; color: #5B2D8E; }
+.badge-editor { background: #B8E4F7; color: #003A52; }
+.badge-new { background: #FFE8B0; color: #8A5800; }
+.badge-resolved { background: #c7f3d2; color: #0a5332; }
+.badge-review { background: #B8E4F7; color: #003A52; }
+.badge-dismissed { background: #ffdad6; color: #93000a; }

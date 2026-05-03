@@ -1,0 +1,70 @@
+{
+  "summary": "Full backend + frontend smoke for NSCW CMS. 32/33 pytest cases pass; 1 real backend bug found (brute-force lockout broken behind kube ingress because request.client.host returns proxy pod IP — counters split). Frontend: all public pages render, grievance form submits, admin login + dashboard + sidebar (Users for admin, hidden for editor), editor /admin/users redirected, logout works. Homepage editor save was triggered but change did not visibly reflect on public home page during UI test (backend PUT confirmed working in pytest, so suspected frontend re-fetch / state issue).",
+  "backend_issues": {
+    "critical": [
+      {
+        "endpoint": "POST /api/auth/login",
+        "issue": "Brute-force lockout uses identifier `${request.client.host}:${email}`. Behind the kubernetes ingress, request.client.host is the LB pod IP (observed 10.64.128.135 and 10.64.130.10 alternating). Each pod sees its own counter, so the threshold of 5 is never reached and lockout (429) never triggers. After 7+ wrong-password attempts only 401 is returned and DB shows two separate documents with counts 4 and 3.",
+        "priority": "HIGH"
+      }
+    ],
+    "minor": [
+      {
+        "endpoint": "POST /api/auth/login",
+        "issue": "Pydantic EmailStr rejects reserved TLDs like .test (422 instead of 401) — not really a bug, but means brute-force attempts with bogus reserved-TLD emails never increment the counter (they bounce on validation)."
+      }
+    ]
+  },
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "HomepageEditor / Home page",
+        "issue": "After successful Save in /admin/homepage, navigating to public / does not show the updated hero_eyebrow text in the rendered DOM (test value 'TEST_UI_Eyebrow_X' was not found in body). Backend PUT/GET on /api/content/homepage works correctly in pytest, so this looks like a frontend re-fetch/cache issue (Home.js may be reading from cached state, or initial fetch fired before the save propagated). Worth verifying whether Home.js re-fetches on every mount and whether Save actually invokes PUT (recommend add a simple toast + console log).",
+        "selector": "[data-testid='hp-hero_eyebrow'] / [data-testid='homepage-save'] / [data-testid='home-page']",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": [
+      {
+        "screen": "Console (all pages)",
+        "issues": [
+          "React Router v6 future-flag warnings on every route — cosmetic, but spammy in console.",
+          "Public pages emit two 401 errors on every load (likely AuthContext probing /api/auth/me on public site). Consider suppressing or only calling /me on admin routes."
+        ]
+      }
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix brute-force lockout: use email-only identifier OR read X-Forwarded-For (first hop) instead of request.client.host so counters are not split across kube proxy pods.",
+    "Investigate HomepageEditor save -> public reflection: verify Save triggers PUT /api/content/homepage with the latest state and that Home.js fetches fresh data on mount (add cache-busting / no-store or refetch on focus).",
+    "Optional: skip /api/auth/me probe on public routes to avoid 401 noise in console.",
+    "Optional: enable React Router v7 future flags (v7_startTransition, v7_relativeSplatPath) to silence warnings."
+  ],
+  "critical_code_review_comments": [
+    "server.py is ~770 lines — still manageable but consider splitting into routers/auth/content/grievance modules once it grows.",
+    "Brute-force key composition is correct logically but does not account for proxied environments. Always derive client IP from forwarded headers when behind a reverse proxy.",
+    "set_auth_cookies uses samesite='none' + secure=True which is correct for HTTPS preview; document that local non-HTTPS dev will need different config.",
+    "delete_cookie does not pass samesite/secure/path matching the set_cookie attributes — most browsers ignore mismatched delete; pass same attributes to ensure deletion across browsers.",
+    "Validation: `chronicle.slug` lower-cased and space->dash but no other sanitization; consider stripping disallowed chars to prevent URL collisions.",
+    "User update PATCH does not validate password min length when provided (UserUpdate.password has no min_length while UserCreate.password requires >=6).",
+    "MongoDB _id is a string UUID (good). All response builders correctly exclude/transform _id."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {
+    "backend": "97% (32/33)",
+    "frontend": "~93% (13/14 UI checks; only homepage save->public reflection failed)"
+  },
+  "test_credentials": "admin@nscw.nagaland.gov.in / Nscw@2026 ; editor@nscw.nagaland.gov.in / Editor@2026 (loaded from /app/memory/test_credentials.md). Bcrypt $2b$ hashes verified; seed_admin updates password if changed.",
+  "seed_data_creation": "No external seed needed. Backend startup seeds admin+editor users and default homepage/about/chronicle/reports/directory/team. Tests create TEST_-prefixed records and clean them up in-test.",
+  "retest_needed": true,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Run `mongosh nscw_cms --eval 'db.login_attempts.deleteMany({})'` before re-running auth tests if any 429 lingers. backend_test.py is the canonical regression suite. After fixing brute-force, the test should pass without changes (it expects 429 after 6 attempts on a fresh identifier). For homepage UI re-test, use selectors [data-testid='hp-hero_eyebrow'] and [data-testid='homepage-save'].",
+  "rca of the issue": "Brute-force lockout: the identifier `${request.client.host}:${email}` resolves to the kube ingress pod IP, not the actual client. Two ingress pods (observed 10.64.128.135 and 10.64.130.10) round-robin requests, so a single attacker's count is split across two documents and never crosses the 5 threshold. Reproduction: send 7 invalid logins to /api/auth/login with the same email; observe two login_attempts docs with counts ~3-4 each and all responses 401. Fix: derive client IP from `X-Forwarded-For` (first IP) when present, OR drop the IP component entirely and key the lockout on the email only — possibly with a separate global IP bucket if abuse is a concern."
+}
